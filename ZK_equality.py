@@ -15,10 +15,13 @@ def ZK_equality(G, H):
 
     # Generate a NIZK proving equality of the plaintexts
     print("generation done")
-    stmt = DLRep(C2 - r1 * H, D2 - r2 * H)
+    stmt1 = DLRep(C2 * G - C1 * H, D2 * G - D1 * H)
     print("statement done")
-    zk_proof = stmt.prove()
+    zk_proof = stmt1.prove()
 
+    # r = Secret()
+    # stmt2 = DLRep(C2 - r * H, D2 - r * H)
+    # assert stmt2.verify(zk_proof)
 
     # Return two ciphertexts and the proof
     return (C1, C2), (D1, D2), zk_proof
